@@ -19,7 +19,8 @@
 import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
-
+import java.util.*;
+import Lab.InsertionSort;
 import Lab.StackEmptyException;
 import Lab.stack;
 import Lab.queue;
@@ -75,15 +76,42 @@ public class Stack <E>{
     	
     	Stack<Integer> stack = new Stack<>();
     	
+    	System.out.println("Adding random numbers to stack...");
+    	
     	////// STACK //////////
     	Random rand = new Random();
-    	stack.push(rand.nextInt(15));
-    	stack.push(rand.nextInt(15));
-    	stack.push(rand.nextInt(15));
-    	stack.push(rand.nextInt(15));
-    	stack.push(rand.nextInt(15));
-    	stack.push(rand.nextInt(15));
     	
+    	int push1 = (rand.nextInt(15));
+    	System.out.println("Push: " + push1);
+    	stack.push(push1);
+    	
+    	int push2 = (rand.nextInt(15));
+    	System.out.println("Push: " + push2);
+    	stack.push(push2);
+    	
+    	int push3 = (rand.nextInt(15));
+    	System.out.println("Push: " + push3);
+    	stack.push(push3);
+    	
+    	int push4 = (rand.nextInt(15));
+    	System.out.println("Push: " + push4);
+    	stack.push(push4);
+    	
+    	int push5 = (rand.nextInt(15));
+    	System.out.println("Push: " + push5);
+    	stack.push(push5);
+    	
+    	/*
+    	stack.push(rand.nextInt(15));
+    	stack.push(rand.nextInt(15));
+    	stack.push(rand.nextInt(15));
+    	stack.push(rand.nextInt(15));
+    	stack.push(rand.nextInt(15));
+    	stack.push(rand.nextInt(15));
+    	*/
+    	
+    	System.out.println("The stack is now generated!");
+    	    	
     	/////// QUEUE ////////
     	int MAX_QUEUE = 5;
     	queue q = new queue(MAX_QUEUE); 
@@ -114,17 +142,41 @@ public class Stack <E>{
         System.out.println("Stack Contents: " + stack);
          
         //System.out.println("Popped: " + stack.pop() );
-        // try creating a queue and adding the pop() to it
+        System.out.println("Now popping numbers from stack into queue.");
+        // created a queue and adding to it from stack.pop()
         queue.enqueue(stack.pop());
+        System.out.println("POP!");
         //System.out.println("Popped: " + stack.pop() );
         queue.enqueue(stack.pop());
+        System.out.println("POP!");
         //System.out.println("Popped: " + stack.pop() );
         queue.enqueue(stack.pop());
-        System.out.println("Remaining: " + stack );
-        System.out.println("\nOdd queue: ");
+        System.out.println("POP!");
+        System.out.println("Remaining in stack: " + stack );
+        System.out.println("\nPopped stack numbers NOW in queue: ");
     	queue.print();
     	
     	queue.peek();
+    	
+    	//////////trying to convert queue to array below to sort
+    	
+    	int[] arr = reverse(queue.stream().mapToInt(Integer::intValue).toArray());
+    	
+    	int[] res = queue.stream().mapToInt(Integer::intValue).toArray();
+    	
+    	
+    	int[] i = { queue.size() };
+    	int[] array = new int[i[0]];
+    	queue.forEach(n -> array[--i[0]] = n);
+    	/////////////////////////////////////////
+    	
+    	//int[] arr = queue.toArray(); //error
+    	
+    	// apply insertion sort
+    	/*
+    	System.out.println("Insertion Sort Odd Numbers:");  
+        InsertionSort.printOdds(q);
+        */
     	
     	/*
         try

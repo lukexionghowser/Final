@@ -16,6 +16,9 @@ public class Tab {
 	JButton close = new JButton("Close");
 	JButton submit = new JButton("Submit");
 	JTextField text = new JTextField("TextField", 20);
+	JLabel label1 = new JLabel("Label 1");
+	JLabel label2 = new JLabel("Label 2");
+
 	
 	private class Button1Handler implements ActionListener
 	{
@@ -67,6 +70,7 @@ public class Tab {
 		even.addActionListener(new Button2Handler());
 		close.addActionListener(new Button3Handler());
 		
+		card1.add(label1);
 		card1.add(odd);
 		card1.add(even);
 		card1.add(close);
@@ -75,6 +79,7 @@ public class Tab {
 		
 		submit.addActionListener(new Button4Handler());
 		
+		card2.add(label2);
 		card2.add(text);
 		card2.add(submit);
 
@@ -82,8 +87,9 @@ public class Tab {
 		tabbedPane.addTab(TEXTPANEL, card2);
 
 		pane.add(tabbedPane, BorderLayout.CENTER);
-		
-		
+		//pane.add(card1, BorderLayout.PAGE_END);
+		//pane.add(card2, BorderLayout.PAGE_END);
+
 	}
 	/**
 	 * Create the GUI and show it. For thread safety, this method should be invoked
@@ -97,10 +103,6 @@ public class Tab {
 		// Create and set up the content pane.
 		Tab demo = new Tab();
 		demo.addComponentToPane(frame.getContentPane());
-		
-		// try to add text printing area
-		//JTextField myOutput = new JTextField(16);
-		//myOutput.setText("some text");
 
 		// Display the window.
 		frame.pack();
