@@ -159,7 +159,7 @@ public class Stack <E>{
     	queue.peek();
     	
     	//////////trying to convert queue to array below to sort
-    	
+    	/*
     	int[] arr = reverse(queue.stream().mapToInt(Integer::intValue).toArray());
     	
     	int[] res = queue.stream().mapToInt(Integer::intValue).toArray();
@@ -168,6 +168,7 @@ public class Stack <E>{
     	int[] i = { queue.size() };
     	int[] array = new int[i[0]];
     	queue.forEach(n -> array[--i[0]] = n);
+    	*/
     	/////////////////////////////////////////
     	
     	//int[] arr = queue.toArray(); //error

@@ -1,6 +1,7 @@
 package Lab;
 
 import java.util.Queue;
+import java.util.Random;
 
 public class queue {
 	private static int front, rear, MAX_QUEUE_SIZE; 
@@ -75,14 +76,15 @@ public class queue {
     } 
   
     // print front of queue 
-    public static void peek() 
+    public static int peek() 
     { 
+    	//genQue();
         if (front == rear) { 
-            System.out.printf("\nQueue is Empty\n"); 
-            return; 
+            //System.out.printf("\nQueue is Empty\n"); 
+            return 0; 
         } 
-        System.out.printf("\nFront Element is: %d", queue[front]); 
-        return; 
+        //System.out.printf("\nFront Element is: %d", queue[front]); 
+        return queue[front]; 
     } 
     // method to return false/true if full
     public boolean isFull()
@@ -107,6 +109,53 @@ public class queue {
             arr[arr.length - i - 1] = temp;
         }
         return arr;
+    }
+    public static int num1() {
+    	Random rand = new Random();
+    	int num = rand.nextInt(10);
+    	return num;
+    }
+    public static int num2() {
+    	Random rand = new Random();
+    	int num = rand.nextInt(10);
+    	return num;
+    }
+    public static String equation() {
+    	Random rand = new Random();
+    	int numOne = rand.nextInt(10);
+    	int numTwo = rand.nextInt(10);
+    	//int numOne = num1().toString();
+    	//int numTwo = num2();
+    	int answer = numOne + numTwo;
+    	String equation = numOne + " + " + numTwo + " = ";
+    	//System.out.println(num1()+ num2());
+    	return equation;
+    	
+    }
+    public static void genQue() {
+    	int MAX_QUEUE = 5;
+    	queue q = new queue(MAX_QUEUE); 
+
+    	Random rand = new Random();
+    	
+    	int push1 = (rand.nextInt(10));
+    	enqueue(push1);
+    	
+    	int push2 = (rand.nextInt(10));
+    	enqueue(push2);
+    	
+    	int push3 = (rand.nextInt(10));
+    	enqueue(push3);
+    	
+    	int push4 = (rand.nextInt(10));
+    	enqueue(push4);
+    	
+    	int push5 = (rand.nextInt(10));
+    	enqueue(push5);
+    	
+    	return;
+    	
+    	//int num = peek();
     }
 
 }
