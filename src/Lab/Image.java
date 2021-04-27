@@ -21,6 +21,8 @@ public class Image extends JPanel{
 		}
 	
 	}
+
+  
 	/*//puts an image in one of 5 locations
 	protected void paintComponent(Graphics gc) {
 	    super.paintComponent(gc);

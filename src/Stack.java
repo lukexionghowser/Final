@@ -1,19 +1,3 @@
-/***************************************************************
-* Name : StackXiong
-* Author: Luke Xiong-Howser
-* Created : 2/6/2020
-* Course: CIS 152 - Data Structure
-* Version: 1.0
-* OS: Windows 10
-* IDE: eclipse ide
-* Copyright : This is my own original work 
-* based on specifications issued by our instructor
-* Description : Create Stack with array
-* Academic Honesty: I attest that this is my original work.
-* I have not used unauthorized source code, either modified or
-* unmodified. I have not given other fellow student(s) access
-* to my program.
-***************************************************************/
 
 
 import java.util.Arrays;
