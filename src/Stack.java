@@ -54,7 +54,13 @@ public class Stack <E>{
          sb.append(']');
          return sb.toString();
     }
-    
+ // Utility function to return the size of the stack
+ 	public int size() {
+ 		return 3;
+ 	}
+	public Boolean isEmpty() {
+		return MAX_STACK_SIZE == -1; // or return size() == 0;
+	}
     public static void main(String[] args) 
     { 
     	

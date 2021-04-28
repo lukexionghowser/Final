@@ -5,6 +5,7 @@ import Lab.Priority;
 
 public class The_Comparator implements Comparator<Priority> {
 
+    
 	public int compare(Priority p1, Priority p2) {
 		String word1 = p1.game;
 		String word2 = p2.game;
