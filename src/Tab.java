@@ -15,11 +15,9 @@ import java.util.regex.Pattern;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-import Lab.BarGraph;
 import Lab.BinaryTree;
-import Lab.MyInputVerifier;
+import Lab.InsertionSort;
 import Lab.Node;
-import Lab.Priority;
 import Lab.Scores;
 import Lab.SelectionSort;
 import Lab.Shape;
@@ -37,7 +35,8 @@ public class Tab {
 	final static int extraWindowWidth = 150;
 
 	Random rand = new Random();
-
+	SelectionSort oe = new SelectionSort();
+	
 	// Panel 1 - Odd/Evens
 	JLabel label1 = new JLabel(Integer.toString(rand.nextInt(10)));
 	JLabel oddListLabel = new JLabel("Your Odds: ");
@@ -58,8 +57,6 @@ public class Tab {
 	JLabel label22 = new JLabel("");
 	JButton submit = new JButton("Submit");
 	JTextField text = new JTextField("", 2);
-	// testing insertion for label on math equation tab
-	// String eq = ("2 + 2 = ");
 	String eq = queue.equation();
 	String test = "4";
 
@@ -72,9 +69,6 @@ public class Tab {
 	JTextField text31 = new JTextField("", 9);
 	Shape myShape = new Shape();
 	JButton submit3 = new JButton("Submit");
-
-	InputVerifier verifier = new MyInputVerifier();
-	// textField1.setInputVerifier(verifier);
 
 	// Panel 4 - Scores
 	JTable table = new JTable();
@@ -129,11 +123,44 @@ public class Tab {
 				this.num = Integer.toString(rand.nextInt(10));
 				// add random number to array
 				Scores.evenList.add(newNum);
-
+				
+				//convert the stack to an object array
+				Object [] arr = Scores.evenList.toArray();
+				//sort the object
+				SelectionSort.selectionSort(arr);
+				//try to print out the order
+				int [] EE = {};
+				for (int j = 0; j < arr.length; j++)
+		            System.out.println( arr[j]);
+				
+				
+				/////////////////////////////
+				String eArr = arr.toString();
+				int eArr2 = Integer.parseInt(eArr);
+				//InsertionSort.sort(eArr2); not int[]
+				//////////////////////////////
+				String ex = "";
+				String ex2 = "";
+				for(Object Object: arr)
+	                ex2 = (Object + " ");
+				for(int i=0; i<arr.length; i++) {
+					ex = arr[i].toString();
+				}
+				///////////////////////////
+				//SelectionSort.printObject2(SelectionSort.selectionSort(arr));
+				///////////////////////////////////
+					//String x = (Object + " ");
+				//Arrays.toString(oe.selectionSort(arr));
+				//oe.printArray(arr);
+				
+				//String eArr = Arrays.toString(oe.selectionSort(arr));
 				String evenArray = Arrays.toString(Scores.evenList.toArray());
 				String oddArray = Arrays.toString(Scores.oddList.toArray());
+				
+				//String sortedE = Arrays.toString(oe.selectionSort(arr));
 				// display list of odd numbers on gui
-				evenStack.setText(evenArray);
+				//evenStack.setText(evenArray);
+				evenStack.setText(ex);
 				oddStack.setText(oddArray);
 				// update random number on gui
 				label1.setText(num);
@@ -141,9 +168,8 @@ public class Tab {
 				Scores.totalOddEven();
 				// this is the original working score label
 				label41.setText(Scores.totalOddEven());
-				String sort = Scores.SelectionSorter();
-				// JOptionPane.showMessageDialog(submit, "Saved to Queue: " +
-				// Scores.SelectionSorter());
+				//String sort = Scores.SelectionSorter();
+				
 
 			} else {
 				// count # of plays
@@ -187,7 +213,6 @@ public class Tab {
 				label41.setText(Scores.totalOddEven());
 
 			} else {
-				// create method to collect wrong++? in a class
 				// add 1 for wrong
 				Scores.countIncorrect.add(1);
 				// count # of plays
@@ -202,8 +227,6 @@ public class Tab {
 				// update random number on gui
 				label1.setText(num);
 				label41.setText(Scores.totalOddEven());
-
-				String g = Scores.games.toString();
 
 			}
 		}
@@ -311,9 +334,7 @@ public class Tab {
 
 		public void actionPerformed(ActionEvent e) {
 
-			// IF STATEMENT USING BINARY TREE AND SCORES
-			// BinaryTree tree = new BinaryTree();
-
+			// IF STATEMENT USING TREE AND SCORES
 			Tree tree = new Tree();
 
 			// GET TEXT FROM SCORE PANEL LABELS
@@ -328,6 +349,8 @@ public class Tab {
 			double oePlays = Scores.oddList.size() + Scores.evenList.size();
 			double sPlays = 1.0;
 
+			JOptionPane.showMessageDialog(button57, "Keep playing to reveal more planets! ");
+			
 			if (oePlays > 3.0 && newOE > 75.0) {
 				label51.setIcon(p1);
 				tree.add("Blasting off from Earth!", 1);
@@ -408,7 +431,7 @@ public class Tab {
 			// String stringValue = tree.convertValueToText(value, isSelected, expanded,
 			// leaf, row, hasFocus);
 
-			JOptionPane.showMessageDialog(button57, "Trip Log: ");
+			
 			// create label and set text. See if it will print tree nodes
 			// label58.setText(tree.inorderTraversal(node));
 			// this just shows [] in label
