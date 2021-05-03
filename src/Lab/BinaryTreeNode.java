@@ -2,7 +2,7 @@ package Lab;
 
 public class BinaryTreeNode {
 
-	String data;
+	public String data;
 	BinaryTreeNode left, right = null;
 
 	BinaryTreeNode(String data2) {

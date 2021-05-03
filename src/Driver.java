@@ -3,6 +3,7 @@ import java.util.Iterator;
 import java.util.PriorityQueue;
 import java.util.Stack;
 
+import Lab.BinaryTree;
 import Lab.InsertionSort;
 import Lab.Priority;
 import Lab.Scores;
@@ -12,10 +13,29 @@ public class Driver {
 	
 	public static void main(String args[])
     {
+		/*
+		Lab.BinaryTree tree = new Lab.BinaryTree();
+		
+		String x = "";
+		
+		tree.push("What should we call this planet?");
+		//tree.push("test");
+		
+		Lab.BinaryTreeNode node = tree.convertList2Binary(tree.root);
+
+		System.out.println("\nInorder Traversal of the" + " constructed Binary Tree is:");
+		//tree.inorderTraversal(node);
+		
+		System.out.println(tree.toString()); //Lab.BinaryTree@15db9742
+		
+		//tree.convertList2Binary(node);
+		//tree.toString();
+		
+		//System.out.print(tree.inorderTraversal(node);
 		
 		//Scores.stackM.toString(); //blank
 		
-		System.out.println(Scores.stackM); //prints []
+		//System.out.println(Scores.stackM); //prints []
 		//Stack<Double> m = Scores.stackM; //blank
 		///////////////////////
 		//TRY A DIFFERENT DATA STRUCTURE

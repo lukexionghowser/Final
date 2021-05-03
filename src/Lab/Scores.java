@@ -125,11 +125,7 @@ public class Scores {
 		stackM.add(total);
 		
 		String score1 = Double.toString(total);
-		
-		//Priority g3 = new Priority(score1, "Math");
-		//games.add(g3);
 
-		//return score1 + " %";
 		return score1 ;
 	}
 
@@ -148,8 +144,7 @@ public class Scores {
 		
 		double total = finalScore3 * 100;
 		
-		stackS.add(total); //use this for queue? set in specific position
-		//should it be stack.add(total);
+		stackS.add(total); 
 		
 		String score3 = Double.toString(total);
 		
