@@ -27,7 +27,6 @@ import Lab.Tree;
 import Lab.queue;
 import Lab.stack;
 
-
 public class Tab {
 
 	final static String BUTTONPANEL = "Odds/Evens";
@@ -39,7 +38,7 @@ public class Tab {
 
 	Random rand = new Random();
 
-	//Panel 1 - Odd/Evens
+	// Panel 1 - Odd/Evens
 	JLabel label1 = new JLabel(Integer.toString(rand.nextInt(10)));
 	JLabel oddListLabel = new JLabel("Your Odds: ");
 	JLabel evenListLabel = new JLabel("Your Evens: ");
@@ -49,8 +48,7 @@ public class Tab {
 	JButton even = new JButton("Even");
 	JButton close = new JButton("Close");
 
-
-	//Panel 2 - Math Equations
+	// Panel 2 - Math Equations
 	int no1 = rand.nextInt(10);
 	int no2 = rand.nextInt(10);
 	String no11 = Integer.toString(no1);
@@ -65,7 +63,7 @@ public class Tab {
 	String eq = queue.equation();
 	String test = "4";
 
-	//Panel 3 - Shapes
+	// Panel 3 - Shapes
 	JLabel label33 = new JLabel("Shape:");
 	JLabel label34 = new JLabel("Shape:");
 	JLabel label35 = new JLabel("Shape:");
@@ -76,9 +74,9 @@ public class Tab {
 	JButton submit3 = new JButton("Submit");
 
 	InputVerifier verifier = new MyInputVerifier();
-	//textField1.setInputVerifier(verifier);
+	// textField1.setInputVerifier(verifier);
 
-	//Panel 4 - Scores
+	// Panel 4 - Scores
 	JTable table = new JTable();
 	JLabel label3 = new JLabel("SCORES");
 	JLabel label40 = new JLabel("Odds/Evens");
@@ -90,8 +88,8 @@ public class Tab {
 	JLabel queueLabel = new JLabel("TESTING");
 	JLabel queueLabel2 = new JLabel("Test2");
 	private String[] imageList;
-	
-	////Panel 5 - Planets
+
+	//// Panel 5 - Planets
 	ImageIcon p1 = createImageIcon("images/p4.png", "Good Start!");
 	ImageIcon p2 = createImageIcon("images/mercury.png", "Keep Going!");
 	ImageIcon p3 = createImageIcon("images/saturn.png", "Awesome!");
@@ -113,8 +111,7 @@ public class Tab {
 
 	double[] values = new double[4];
 	String[] names = new String[4];
-	
-	
+
 	private class Button1Handler implements ActionListener {
 		private String num;
 
@@ -142,10 +139,11 @@ public class Tab {
 				label1.setText(num);
 				// String score = Integer.toString(Scores.totalOddEven());
 				Scores.totalOddEven();
-				//this is the original working score label
+				// this is the original working score label
 				label41.setText(Scores.totalOddEven());
 				String sort = Scores.SelectionSorter();
-				//JOptionPane.showMessageDialog(submit, "Saved to Queue: " + Scores.SelectionSorter());
+				// JOptionPane.showMessageDialog(submit, "Saved to Queue: " +
+				// Scores.SelectionSorter());
 
 			} else {
 				// count # of plays
@@ -162,7 +160,7 @@ public class Tab {
 				label1.setText(num);
 				Scores.totalOddEven();
 				label41.setText(Scores.totalOddEven());
-				
+
 			}
 
 		}
@@ -187,7 +185,7 @@ public class Tab {
 				// update random number on gui
 				label1.setText(num);
 				label41.setText(Scores.totalOddEven());
-				
+
 			} else {
 				// create method to collect wrong++? in a class
 				// add 1 for wrong
@@ -204,9 +202,9 @@ public class Tab {
 				// update random number on gui
 				label1.setText(num);
 				label41.setText(Scores.totalOddEven());
-				
+
 				String g = Scores.games.toString();
-				
+
 			}
 		}
 	}
@@ -222,17 +220,15 @@ public class Tab {
 
 			int x = Integer.parseInt(no11);
 			int y = Integer.parseInt(no22);
-			
-			int sum = x+y;
+
+			int sum = x + y;
 
 			String input = text.getText();
-			int in = Integer.parseInt(input);
-			
-			//if (text.getText().equals("") || !(Pattern.matches("^[0-9]+$", text.getText()))) {
-			 //    JOptionPane.showMessageDialog(null, " Enter Numbers Only ");
-			 //  }
 
-				if (in == sum ||  !(Pattern.matches("^[0-9]+$", text.getText()))) {
+			try {
+				int in = Integer.parseInt(input);
+				if (in == sum) {
+
 					// add to #correct stack
 					Scores.countMath.add(1);
 					int a = rand.nextInt(10);
@@ -242,11 +238,7 @@ public class Tab {
 					equation.setText(no11 + " + " + no22 + " = ");
 					text.setText("");
 					label43.setText(Scores.totalMath());
-				
-				} else if (input.equals("") || !(Pattern.matches("^[0-9]+$", input))) 
-				{
-				 JOptionPane.showMessageDialog(null, " Enter Numbers Only ");
-				
+
 				} else {
 					// add to #wrong stack
 					Scores.wrongMath.add(1);
@@ -258,12 +250,16 @@ public class Tab {
 					text.setText("");
 					label43.setText(Scores.totalMath());
 					JOptionPane.showMessageDialog(submit, "Correct Answer: " + sum);
-					   }
+
 				}
 
-			
-	
+			} catch (NumberFormatException ex) {
 
+				JOptionPane.showMessageDialog(submit, " Enter Positive Numbers Only ");
+
+			}
+
+		}
 	}
 
 	private class Button5Handler implements ActionListener {
@@ -272,53 +268,52 @@ public class Tab {
 			String getValue1 = text3.getText();
 			String getValue2 = text30.getText();
 			String getValue3 = text31.getText();
-			
+
 			if (getValue1.toUpperCase().contentEquals("CIRCLE")) {
 				Scores.countCircle.add(1);
-			}else {
+			} else {
 				Scores.wrongShapes.add(1);
 				if (getValue1.equals("") || (Pattern.matches("^[0-9]+$", getValue1))) {
-				     JOptionPane.showMessageDialog(null, " Enter letters Only ");
-		}
-			}
-			
-			 if (getValue2.toUpperCase().contentEquals( "SQUARE")) {
-				Scores.countSquare.add(1);
-			 }else {
-					Scores.wrongShapes.add(1);
-					if (getValue2.equals("") || (Pattern.matches("^[0-9]+$", getValue2))) {
-					     JOptionPane.showMessageDialog(null, " Enter letters Only ");
-			}
+					JOptionPane.showMessageDialog(null, " Enter letters Only ");
 				}
-				
-				if (getValue3.toUpperCase().contentEquals( "TRIANGLE")) {
-					Scores.countTriangle.add(1);
+			}
+
+			if (getValue2.toUpperCase().contentEquals("SQUARE")) {
+				Scores.countSquare.add(1);
+			} else {
+				Scores.wrongShapes.add(1);
+				if (getValue2.equals("") || (Pattern.matches("^[0-9]+$", getValue2))) {
+					JOptionPane.showMessageDialog(null, " Enter letters Only ");
+				}
+			}
+
+			if (getValue3.toUpperCase().contentEquals("TRIANGLE")) {
+				Scores.countTriangle.add(1);
 			} else {
 				Scores.wrongShapes.add(1);
 				if (getValue3.equals("") || (Pattern.matches("^[0-9]+$", getValue3))) {
-					     JOptionPane.showMessageDialog(null, " Enter letters Only ");
+					JOptionPane.showMessageDialog(null, " Enter letters Only ");
+				}
 			}
-			} 
-	
-			JOptionPane.showMessageDialog(submit3, "Check out your scores on the next Tab!" );
+
+			JOptionPane.showMessageDialog(submit3, "Check out your scores on the next Tab!");
 			label45.setText(Scores.totalShape2());
-			
+
 			text3.setText("");
 			text30.setText("");
 			text31.setText("");
-	
-			
-			 
-				}
+
+		}
 	}
+
 	private class Button57Handler implements ActionListener {
 		private String num;
 
 		public void actionPerformed(ActionEvent e) {
-			
-			//IF STATEMENT USING BINARY TREE AND SCORES
-			//BinaryTree tree = new BinaryTree();
-			
+
+			// IF STATEMENT USING BINARY TREE AND SCORES
+			// BinaryTree tree = new BinaryTree();
+
 			Tree tree = new Tree();
 
 			// GET TEXT FROM SCORE PANEL LABELS
@@ -328,40 +323,40 @@ public class Tab {
 			Double newM = Double.parseDouble(getM);
 			String getS = label45.getText();
 			Double newS = Double.parseDouble(getS);
-			
+
 			double mPlays = Scores.countMath.size();
 			double oePlays = Scores.oddList.size() + Scores.evenList.size();
 			double sPlays = 1.0;
 
 			if (oePlays > 3.0 && newOE > 75.0) {
-			label51.setIcon(p1);
-			tree.add("Blasting off from Earth!", 1);
+				label51.setIcon(p1);
+				tree.add("Blasting off from Earth!", 1);
 			} else {
 				tree.add("Got a little lost!", 1);
 			}
 
-			if(mPlays > 3.0 && newM > 75.0) {
+			if (mPlays > 3.0 && newM > 75.0) {
 				label53.setIcon(p3);
 				tree.add("You reached Saturn!", 2);
 			} else {
 				tree.add("Uh oh. Need to work on my math!", 2);
 			}
-			
-			if(sPlays > 0 && newS > 75.0) {
+
+			if (sPlays > 0 && newS > 75.0) {
 				label55.setIcon(p5);
 				tree.add("Looks like a new planet!", 3);
 			} else {
 				tree.add("Keep working on math!", 3);
 			}
-			
+
 			if (oePlays > 6.0 && newOE > 75.0) {
 				label56.setIcon(p33);
 				tree.add("Another new planet!", 4);
 			} else {
 				tree.add("Working on math.", 4);
 			}
-			
-			if(mPlays > 6.0 && newM > 75.0) {
+
+			if (mPlays > 6.0 && newM > 75.0) {
 				label54.setIcon(p4);
 				tree.add("Pluto!", 5);
 			} else {
@@ -373,77 +368,64 @@ public class Tab {
 			} else {
 				tree.add("Better luck next time!", 6);
 			}
-			//blank
-			//String x = tree.inorderTraversal(node).toString();
+			// blank
+			// String x = tree.inorderTraversal(node).toString();
 			/*
-			Stack<String> stack1 = new Stack<String>();
-			while(!BinaryTree.TripLog.isEmpty()) {
-				String x = BinaryTree.TripLog.dequeue();
-				stack1.push(temp);
-			}
-			Arrays.toString(stack1.toArray());*/
-			//this freezes the blast off button
-			//Lab.BinaryTreeNode node = tree.convertList2Binary(tree.root);
-			//String x = BinaryTree.convertList2Binary(node).toString();
-			//Integer[] values = extractValues(n).toArray(new Integer[] {});
-			//String arr0 = (Arrays.toString(tree.convertList2Binary(tree.root)));
+			 * Stack<String> stack1 = new Stack<String>();
+			 * while(!BinaryTree.TripLog.isEmpty()) { String x =
+			 * BinaryTree.TripLog.dequeue(); stack1.push(temp); }
+			 * Arrays.toString(stack1.toArray());
+			 */
+			// this freezes the blast off button
+			// Lab.BinaryTreeNode node = tree.convertList2Binary(tree.root);
+			// String x = BinaryTree.convertList2Binary(node).toString();
+			// Integer[] values = extractValues(n).toArray(new Integer[] {});
+			// String arr0 = (Arrays.toString(tree.convertList2Binary(tree.root)));
 			String arr = (Arrays.toString(Scores.stackM.toArray()));
-			//String arr2 = (Arrays.toString());
-			 //ArrayList<String> list = new ArrayList<String>();
-			 //Double[] arr1 = (Double[]) Scores.stackM.toArray();
-			 //String arr2 = SelectionSort.sort(arr1); //this array has doubles
-			
-			/*// tried this to see if i can sort strings
-			 int i,j;
-			  String key;
-			  String x="";
-			  String[] inputArray = (String[]) Scores.stackM.toArray();
-			  //String[] inputArray = {"E","D","C","B","A","B"};
-			 // System.out.println(Arrays.toString(inputArray));
-			  for (j = 1; j < inputArray.length; j++) { //the condition has changed
-			    key = inputArray[j];
-			    i = j - 1;
-			    while (i >= 0) {
-			      if (key.compareTo(inputArray[i]) > 0) {//here too
-			        break;
-			      }
-			      inputArray[i + 1] = inputArray[i];
-			      i--;
-			    }
-			    inputArray[i + 1] = key;
-			    //System.out.println(Arrays.toString(inputArray));
-			    x = (Arrays.toString(inputArray));
-			  }
-			 // System.out.println(Arrays.toString(inputArray));
-			  x = (Arrays.toString(inputArray));
-			*/
-			String x = tree.printInorder(); //showing up blank
+			// String arr2 = (Arrays.toString());
+			// ArrayList<String> list = new ArrayList<String>();
+			// Double[] arr1 = (Double[]) Scores.stackM.toArray();
+			// String arr2 = SelectionSort.sort(arr1); //this array has doubles
+
+			/*
+			 * // tried this to see if i can sort strings int i,j; String key; String x="";
+			 * String[] inputArray = (String[]) Scores.stackM.toArray(); //String[]
+			 * inputArray = {"E","D","C","B","A","B"}; //
+			 * System.out.println(Arrays.toString(inputArray)); for (j = 1; j <
+			 * inputArray.length; j++) { //the condition has changed key = inputArray[j]; i
+			 * = j - 1; while (i >= 0) { if (key.compareTo(inputArray[i]) > 0) {//here too
+			 * break; } inputArray[i + 1] = inputArray[i]; i--; } inputArray[i + 1] = key;
+			 * //System.out.println(Arrays.toString(inputArray)); x =
+			 * (Arrays.toString(inputArray)); } //
+			 * System.out.println(Arrays.toString(inputArray)); x =
+			 * (Arrays.toString(inputArray));
+			 */
+			String x = tree.printInorder(); // showing up blank
 			// x.toString() //the dialogbox doesn't appear
 			// tree.printInorder().toCharArray() // doesnt appear
 			String y = tree.linealNotation();
-			//String y = treeToString(tree);
-			//String stringValue = tree.convertValueToText(value, isSelected, expanded, leaf, row, hasFocus);
-			
-			JOptionPane.showMessageDialog(button57, "Trip Log: "  );
-		//create label and set text. See if it will print tree nodes
-			//label58.setText(tree.inorderTraversal(node));
+			// String y = treeToString(tree);
+			// String stringValue = tree.convertValueToText(value, isSelected, expanded,
+			// leaf, row, hasFocus);
+
+			JOptionPane.showMessageDialog(button57, "Trip Log: ");
+			// create label and set text. See if it will print tree nodes
+			// label58.setText(tree.inorderTraversal(node));
 			// this just shows [] in label
-			//label58.setText("");
-			//^ this size() was 0 so its not saving into stack from traversal method
-			//BinaryTree.inorderTraversal(node); //blank
-			//tree.toString(); //blank
-			
+			// label58.setText("");
+			// ^ this size() was 0 so its not saving into stack from traversal method
+			// BinaryTree.inorderTraversal(node); //blank
+			// tree.toString(); //blank
+
 		}
-		
-		
-		}
-	
+
+	}
+
 	private class Button58Handler implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 
 		}
 	}
-
 
 	public void addComponentToPane(Container pane) {
 
@@ -538,10 +520,10 @@ public class Tab {
 		card3.add(submit3, center);
 		card3.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		card3.setBackground(Color.cyan);
-		
-		//text3.setInputVerifier(verifier);
-		//text30.setInputVerifier(verifier);
-		//text31.setInputVerifier(verifier);
+
+		// text3.setInputVerifier(verifier);
+		// text30.setInputVerifier(verifier);
+		// text31.setInputVerifier(verifier);
 
 		JPanel card4 = new JPanel();
 
@@ -571,11 +553,11 @@ public class Tab {
 		card4.add(new JLabel("          "), center4);
 		card4.add((label45), right4);
 		card4.setBackground(Color.pink);
-		
+
 		JPanel card5 = new JPanel();
-		
-		//card5.add(new JLabel());
-		//card5.setLayout(new BoxLayout(card5, BoxLayout.Y_AXIS));
+
+		// card5.add(new JLabel());
+		// card5.setLayout(new BoxLayout(card5, BoxLayout.Y_AXIS));
 		card5.setLayout(new GridBagLayout());
 		GridBagConstraints left5 = new GridBagConstraints();
 		left5.anchor = GridBagConstraints.EAST;
@@ -586,10 +568,11 @@ public class Tab {
 		right5.fill = GridBagConstraints.HORIZONTAL;
 		right5.gridwidth = GridBagConstraints.REMAINDER;
 		card5.add((new JLabel()), left);
-		card5.add((label50),center);
+		card5.add((label50), center);
 		card5.add((new JLabel()), right);
 		label50.setFont(queueLabel.getFont().deriveFont(20f));
-		//card5.add(new JLabel(new ImageIcon(getClass().getClassLoader().getResource("images/stary.JPG"))));
+		// card5.add(new JLabel(new
+		// ImageIcon(getClass().getClassLoader().getResource("images/stary.JPG"))));
 		card5.add((label51), left);
 		card5.add((label52), center);
 		card5.add((label53), right);
@@ -601,7 +584,7 @@ public class Tab {
 		card5.add((label56), right);
 		card5.add((label58), left);
 		card5.setBackground(Color.black);
-		
+
 		button57.addActionListener(new Button57Handler());
 		tripLog.addActionListener(new Button58Handler());
 
@@ -612,21 +595,18 @@ public class Tab {
 		tabbedPane.addTab(TREEPANEL, card5);
 
 		pane.add(tabbedPane, BorderLayout.CENTER);
-		
-		
 
 	}
 
 	/** Returns an ImageIcon, or null if the path was invalid. */
-	private ImageIcon createImageIcon(String path,
-	                                           String description) {
-	    java.net.URL imgURL = getClass().getResource(path);
-	    if (imgURL != null) {
-	        return new ImageIcon(imgURL, description);
-	    } else {
-	        System.err.println("Couldn't find file: " + path);
-	        return null;
-	    }
+	private ImageIcon createImageIcon(String path, String description) {
+		java.net.URL imgURL = getClass().getResource(path);
+		if (imgURL != null) {
+			return new ImageIcon(imgURL, description);
+		} else {
+			System.err.println("Couldn't find file: " + path);
+			return null;
+		}
 	}
 
 	/**
@@ -650,7 +630,7 @@ public class Tab {
 	public static void main(String[] args) {
 
 		try {
-			
+
 			UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
 		} catch (UnsupportedLookAndFeelException ex) {
 			ex.printStackTrace();
@@ -672,4 +652,3 @@ public class Tab {
 		});
 	}
 }
-	
