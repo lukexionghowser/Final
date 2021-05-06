@@ -36,7 +36,7 @@ public class Tab {
 
 	Random rand = new Random();
 	SelectionSort oe = new SelectionSort();
-	
+
 	// Panel 1 - Odd/Evens
 	JLabel label1 = new JLabel(Integer.toString(rand.nextInt(10)));
 	JLabel oddListLabel = new JLabel("Your Odds: ");
@@ -111,6 +111,7 @@ public class Tab {
 
 		public void actionPerformed(ActionEvent e) {
 			Random rand = new Random();
+			Object[] arr = null;
 
 			// get the label # and save into variable
 			String getNum = label1.getText();
@@ -123,44 +124,45 @@ public class Tab {
 				this.num = Integer.toString(rand.nextInt(10));
 				// add random number to array
 				Scores.evenList.add(newNum);
-				
-				//convert the stack to an object array
-				Object [] arr = Scores.evenList.toArray();
-				//sort the object
-				SelectionSort.selectionSort(arr);
-				//try to print out the order
-				int [] EE = {};
-				for (int j = 0; j < arr.length; j++)
-		            System.out.println( arr[j]);
-				
-				
-				/////////////////////////////
-				String eArr = arr.toString();
-				int eArr2 = Integer.parseInt(eArr);
-				//InsertionSort.sort(eArr2); not int[]
-				//////////////////////////////
+
 				String ex = "";
 				String ex2 = "";
-				for(Object Object: arr)
-	                ex2 = (Object + " ");
-				for(int i=0; i<arr.length; i++) {
+				for (Object Object : arr)
+					ex2 = (Object + " ");
+				for (int i = 0; i < arr.length; i++) {
 					ex = arr[i].toString();
 				}
-				///////////////////////////
-				//SelectionSort.printObject2(SelectionSort.selectionSort(arr));
-				///////////////////////////////////
-					//String x = (Object + " ");
-				//Arrays.toString(oe.selectionSort(arr));
-				//oe.printArray(arr);
-				
-				//String eArr = Arrays.toString(oe.selectionSort(arr));
+
+				// tried variations of sort - unsuccessful
+				// String sortedE = Arrays.toString(oe.selectionSort(arr));
+				// evenStack.setText(arr.toString());
+				// Stack sortedStack = Stack.sortStack(Scores.evenList);
+				// sort stack with another stack - unsuccessful
+				// Scores.evenList = Stack.sort(Scores.evenList);
+				// Scores.oddList = Stack.sort(Scores.oddList);
+				// String eArr = Arrays.toString(oe.selectionSort(arr));
+				////// selection sort attempt
+				// convert the stack to an object array
+				// arr = Scores.evenList.toArray();
+				// sort the object
+				// SelectionSort.selectionSort(arr);
+				// try to print out the order
+				// int [] EE = {};
+				// for (int j = 0; j < arr.length; j++)
+				// System.out.println( arr[j]);
+				// Arrays.toString(oe.selectionSort(arr));
+				// oe.printArray(arr);
+				// SelectionSort.printObject2(SelectionSort.selectionSort(arr));
+				///// insertion sort attempt
+				// String eArr = arr.toString();
+				// int eArr2 = Integer.parseInt(eArr);
+				// InsertionSort.sort(eArr2); not int[]
+
 				String evenArray = Arrays.toString(Scores.evenList.toArray());
 				String oddArray = Arrays.toString(Scores.oddList.toArray());
-				
-				//String sortedE = Arrays.toString(oe.selectionSort(arr));
+
 				// display list of odd numbers on gui
-				//evenStack.setText(evenArray);
-				evenStack.setText(ex);
+				evenStack.setText(evenArray); // update for other sect
 				oddStack.setText(oddArray);
 				// update random number on gui
 				label1.setText(num);
@@ -168,14 +170,17 @@ public class Tab {
 				Scores.totalOddEven();
 				// this is the original working score label
 				label41.setText(Scores.totalOddEven());
-				//String sort = Scores.SelectionSorter();
-				
+				// String sort = Scores.SelectionSorter();
 
 			} else {
 				// count # of plays
 				this.num = Integer.toString(rand.nextInt(10));
 				// add number to array
 				Scores.oddList.add(newNum);
+
+				// tried to sort with another stack - unsuccessful
+				// Scores.evenList = Stack.sort(Scores.evenList);
+				// Scores.oddList = Stack.sort(Scores.oddList);
 
 				String evenArray = Arrays.toString(Scores.evenList.toArray());
 				String oddArray = Arrays.toString(Scores.oddList.toArray());
@@ -350,7 +355,7 @@ public class Tab {
 			double sPlays = 1.0;
 
 			JOptionPane.showMessageDialog(button57, "Keep playing to reveal more planets! ");
-			
+
 			if (oePlays > 3.0 && newOE > 75.0) {
 				label51.setIcon(p1);
 				tree.add("Blasting off from Earth!", 1);
@@ -405,10 +410,6 @@ public class Tab {
 			// Integer[] values = extractValues(n).toArray(new Integer[] {});
 			// String arr0 = (Arrays.toString(tree.convertList2Binary(tree.root)));
 			String arr = (Arrays.toString(Scores.stackM.toArray()));
-			// String arr2 = (Arrays.toString());
-			// ArrayList<String> list = new ArrayList<String>();
-			// Double[] arr1 = (Double[]) Scores.stackM.toArray();
-			// String arr2 = SelectionSort.sort(arr1); //this array has doubles
 
 			/*
 			 * // tried this to see if i can sort strings int i,j; String key; String x="";
@@ -424,21 +425,8 @@ public class Tab {
 			 * (Arrays.toString(inputArray));
 			 */
 			String x = tree.printInorder(); // showing up blank
-			// x.toString() //the dialogbox doesn't appear
-			// tree.printInorder().toCharArray() // doesnt appear
 			String y = tree.linealNotation();
-			// String y = treeToString(tree);
-			// String stringValue = tree.convertValueToText(value, isSelected, expanded,
-			// leaf, row, hasFocus);
 
-			
-			// create label and set text. See if it will print tree nodes
-			// label58.setText(tree.inorderTraversal(node));
-			// this just shows [] in label
-			// label58.setText("");
-			// ^ this size() was 0 so its not saving into stack from traversal method
-			// BinaryTree.inorderTraversal(node); //blank
-			// tree.toString(); //blank
 
 		}
 

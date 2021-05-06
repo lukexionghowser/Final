@@ -1,6 +1,6 @@
 
-
 import java.util.Arrays;
+
 import java.util.Random;
 import java.util.Scanner;
 import java.util.*;
@@ -9,181 +9,154 @@ import Lab.StackEmptyException;
 import Lab.stack;
 import Lab.queue;
 
-public class Stack <E>{
-	
+public class Stack<E> {
+
 	private int MAX_STACK_SIZE = 0;
-    private static final int DEFAULT_CAPACITY = 10;
-    private Object elements[];
- 
- 
-    public Stack() {
-        elements = new Object[DEFAULT_CAPACITY];
-    }
- 
-    public void push(E e) {
-        if (MAX_STACK_SIZE == elements.length) {
-            ensureCapacity();
-        }
-        elements[MAX_STACK_SIZE++] = e;
-    }
- 
-    @SuppressWarnings("unchecked")
-    public E pop() {
-        E e = (E) elements[--MAX_STACK_SIZE];
-        elements[MAX_STACK_SIZE] = null;
-        return e;
-    }
- 
-    private void ensureCapacity() {
-        int newSize = elements.length * 2;
-        elements = Arrays.copyOf(elements, newSize);
-    }
-     
-    @Override
-    public String toString()
-    {
-         StringBuilder sb = new StringBuilder();
-         sb.append('[');
-         for(int i = 0; i < MAX_STACK_SIZE ;i++) {
-             sb.append(elements[i].toString());
-             if(i < MAX_STACK_SIZE-1){
-                 sb.append(",");
-                 
-             }
-         }
-         sb.append(']');
-         return sb.toString();
-    }
- // Utility function to return the size of the stack
- 	public int size() {
- 		return 3;
- 	}
+	private static final int DEFAULT_CAPACITY = 10;
+	private Object elements[];
+
+	public Stack() {
+		elements = new Object[DEFAULT_CAPACITY];
+	}
+
+	public void push(E e) {
+		if (MAX_STACK_SIZE == elements.length) {
+			ensureCapacity();
+		}
+		elements[MAX_STACK_SIZE++] = e;
+	}
+
+	@SuppressWarnings("unchecked")
+	public E pop() {
+		E e = (E) elements[--MAX_STACK_SIZE];
+		elements[MAX_STACK_SIZE] = null;
+		return e;
+	}
+
+	private void ensureCapacity() {
+		int newSize = elements.length * 2;
+		elements = Arrays.copyOf(elements, newSize);
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append('[');
+		for (int i = 0; i < MAX_STACK_SIZE; i++) {
+			sb.append(elements[i].toString());
+			if (i < MAX_STACK_SIZE - 1) {
+				sb.append(",");
+
+			}
+		}
+		sb.append(']');
+		return sb.toString();
+	}
+
+	// Utility function to return the size of the stack
+	public int size() {
+		return 3;
+	}
+
 	public Boolean isEmpty() {
 		return MAX_STACK_SIZE == -1; // or return size() == 0;
 	}
-    public static void main(String[] args) 
-    { 
-    	
-    	Stack<Integer> stack = new Stack<>();
-    	
-    	System.out.println("Adding random numbers to stack...");
-    	
-    	////// STACK //////////
-    	Random rand = new Random();
-    	
-    	int push1 = (rand.nextInt(15));
-    	System.out.println("Push: " + push1);
-    	stack.push(push1);
-    	
-    	int push2 = (rand.nextInt(15));
-    	System.out.println("Push: " + push2);
-    	stack.push(push2);
-    	
-    	int push3 = (rand.nextInt(15));
-    	System.out.println("Push: " + push3);
-    	stack.push(push3);
-    	
-    	int push4 = (rand.nextInt(15));
-    	System.out.println("Push: " + push4);
-    	stack.push(push4);
-    	
-    	int push5 = (rand.nextInt(15));
-    	System.out.println("Push: " + push5);
-    	stack.push(push5);
-    	
-    	/*
-    	stack.push(rand.nextInt(15));
-    	stack.push(rand.nextInt(15));
-    	stack.push(rand.nextInt(15));
-    	stack.push(rand.nextInt(15));
-    	stack.push(rand.nextInt(15));
-    	stack.push(rand.nextInt(15));
-    	*/
-    	
-    	System.out.println("The stack is now generated!");
-    	    	
-    	/////// QUEUE ////////
-    	int MAX_QUEUE = 5;
-    	queue q = new queue(MAX_QUEUE); 
-    	System.out.println("Queue size: " + MAX_QUEUE);
-    	/*
-    	int i = 0;
-    	while (i < MAX_QUEUE) {
-			// fill customer queue with random number
-    		queue.enqueue(i);
-    		i++;
-    	}*/
-    	//System.out.println("Number of Odds: " + tickets);
-    	//System.out.println("Queue size: " + q.size());
-    	System.out.println("Contents in queue: ");
-    	queue.print();
-    	
-    	/*//rest of Queue code below
-    	// create while ticket / cust queue != 0 dequeue
-    	while (tickets > 0 && q.size()>0) {
-    	q.dequeue();
-    	int bought = rand.nextInt(4);
-    	tickets = tickets - bought;
-    	System.out.println("Customer bought: " + bought + " Remaining: " + tickets);
-    	System.out.println("\nRemaining Customers: ");
-    	q.print();*/
-    	//////////////////////////////////////////////
-         
-        System.out.println("Stack Contents: " + stack);
-         
-        //System.out.println("Popped: " + stack.pop() );
-        System.out.println("Now popping numbers from stack into queue.");
-        // created a queue and adding to it from stack.pop()
-        queue.enqueue(stack.pop());
-        System.out.println("POP!");
-        //System.out.println("Popped: " + stack.pop() );
-        queue.enqueue(stack.pop());
-        System.out.println("POP!");
-        //System.out.println("Popped: " + stack.pop() );
-        queue.enqueue(stack.pop());
-        System.out.println("POP!");
-        System.out.println("Remaining in stack: " + stack );
-        System.out.println("\nPopped stack numbers NOW in queue: ");
-    	queue.print();
-    	
-    	queue.peek();
-    	
-    	//////////trying to convert queue to array below to sort
-    	/*
-    	int[] arr = reverse(queue.stream().mapToInt(Integer::intValue).toArray());
-    	
-    	int[] res = queue.stream().mapToInt(Integer::intValue).toArray();
-    	
-    	
-    	int[] i = { queue.size() };
-    	int[] array = new int[i[0]];
-    	queue.forEach(n -> array[--i[0]] = n);
-    	*/
-    	/////////////////////////////////////////
-    	
-    	//int[] arr = queue.toArray(); //error
-    	
-    	// apply insertion sort
-    	/*
-    	System.out.println("Insertion Sort Odd Numbers:");  
-        InsertionSort.printOdds(q);
-        */
-    	
-    	/*
-        try
-        { 
-            // Throw an object of user defined exception 
-            throw new StackEmptyException("This is the Exception"); 
-        } 
-        catch (StackEmptyException ex) 
-        { 
-            System.out.println("Caught"); 
-  
-            // Print the message from MyException object 
-            System.out.println(ex.getMessage()); 
-        } 
-        */
-    }
-    
+
+	public int peek() { // needs to be int for sort
+		int x = ((Integer) (elements[MAX_STACK_SIZE])).intValue();
+		return x;
+	}
+	/*
+	 * public Object peek() { //no errors but cant use in sort return
+	 * elements[MAX_STACK_SIZE]; } /* public int peek() { //need to rewrite to use
+	 * dec var return arr[top]; }
+	 */
+
+	public static Stack<Integer> sortstack(Stack<Integer> input) {
+		Stack<Integer> tmpStack = new Stack<Integer>();
+		while (!input.isEmpty()) {
+// pop out the first element
+			int tmp = input.pop();
+
+// while temporary stack is not empty and
+// top of stack is greater than temp
+			while (!tmpStack.isEmpty() && tmpStack.peek() > tmp) {
+// pop from temporary stack and 
+// push it to the input stack
+				input.push(tmpStack.pop());
+			}
+
+// push temp in tempory of stack
+			tmpStack.push(tmp);
+		}
+		return tmpStack;
+	}
+
+	public static Stack<Integer> sort(Stack<Integer> stack) {
+
+		if (stack.isEmpty()) {
+			return null;
+		}
+
+		Stack<Integer> sortedStack = new Stack<Integer>();
+
+		int element = 0;
+		while (!stack.isEmpty()) {
+			if (stack.peek() <= (element = stack.pop())) {
+				if (sortedStack.isEmpty()) {
+					sortedStack.push(element);
+				} else {
+					while ((!sortedStack.isEmpty()) && sortedStack.peek() > element) {
+						stack.push(sortedStack.pop());
+					}
+					sortedStack.push(element);
+				}
+			}
+		}
+
+		return sortedStack;
+	}
+	/*
+	 * // Recursive Method to insert an item x in sorted way static void
+	 * sortedInsert(Stack<Integer> s, int x) { // Base case: Either stack is empty
+	 * or newly // inserted item is greater than top (more than all // existing) if
+	 * (s.isEmpty() || x > s.peek()) { s.push(x); return; }
+	 * 
+	 * // If top is greater, remove the top item and recur int temp = s.pop();
+	 * sortedInsert(s, x);
+	 * 
+	 * // Put back the top item removed earlier s.push(temp); }
+	 * 
+	 * // Method to sort stack static void sortStack(Stack<Integer> s) { // If stack
+	 * is not empty if (!s.isEmpty()) { // Remove the top item int x = s.pop();
+	 * 
+	 * // Sort remaining stack sortStack(s);
+	 * 
+	 * // Push the top item back in sorted stack sortedInsert(s, x); } }
+	 */
+
+	public static java.util.Stack<Integer> sort(java.util.Stack<Integer> evenList) {
+		if (stack.isEmpty()) {
+			return null;
+		}
+
+		java.util.Stack<Integer> sortedStack = new java.util.Stack<Integer>();
+
+		int element = 0;
+		while (!stack.isEmpty()) {
+			if (stack.peek() <= (element = stack.pop())) {
+				if (sortedStack.isEmpty()) {
+					sortedStack.push(element);
+				} else {
+					while ((!sortedStack.isEmpty()) && sortedStack.peek() > element) {
+						stack.push(sortedStack.pop());
+					}
+					sortedStack.push(element);
+				}
+			}
+		}
+
+		return sortedStack;
+	}
 
 }

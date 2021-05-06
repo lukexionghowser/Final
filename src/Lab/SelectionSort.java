@@ -39,19 +39,20 @@ public class SelectionSort {
 
 	public static void selectionSort(Object[] data) {
 		for (int i = 0; i < data.length - 1; i++) {
-		// Find the index of the minimum item, starting at `i'.
-		int minIndex = i;
-		for (int j = i + 1; j < data.length; j++) {
-		if (((Comparable) data[j]).compareTo(data[minIndex]) < 0)
-		minIndex = j;
-		// Exchange with the first item (at `i'), but only if different
-		if (i != minIndex) {
-		Object tmp = data[i];
-		data[i] = data[minIndex];
-		data[minIndex] = tmp;
+			// Find the index of the minimum item, starting at `i'.
+			int minIndex = i;
+			for (int j = i + 1; j < data.length; j++) {
+				if (((Comparable) data[j]).compareTo(data[minIndex]) < 0)
+					minIndex = j;
+				// Exchange with the first item (at `i'), but only if different
+				if (i != minIndex) {
+					Object tmp = data[i];
+					data[i] = data[minIndex];
+					data[minIndex] = tmp;
+				}
+			}
 		}
-		}
-		}}
+	}
 
 	// Prints the array
 	public void printArray(int arr[]) {
@@ -60,20 +61,20 @@ public class SelectionSort {
 			System.out.print(arr[i] + " ");
 		System.out.println();
 	}
-	
+
 	public static void printObject(Object arr[]) {
 		String ex;
-		for(int i=0; i< arr.length; i++) {
+		for (int i = 0; i < arr.length; i++) {
 			ex = arr[i].toString();
 		}
 	}
-	
+
 	public static void printObject2(Object selectionSort) {
-		Object [] arr = {};
+		Object[] arr = {};
 		String ex2;
-		for(Object Object: arr)
-            ex2 = (Object + " ");
-		
+		for (Object Object : arr)
+			ex2 = (Object + " ");
+
 	}
 
 }

@@ -93,8 +93,7 @@ public class Tree {
 
 		// the node
 		System.out.print(Node.sData + " ");
-		
-		
+
 	}
 
 	/* Given a binary tree, print its nodes in inorder */
@@ -133,7 +132,7 @@ public class Tree {
 
 	public String printInorder() {
 		String x = printInorder(root);
-		 return x;
+		return x;
 	}
 
 	@Override
@@ -162,10 +161,10 @@ public class Tree {
 	public String getTreeCellRendererComponent(JTree tree, Object value, boolean isSelected, boolean expanded,
 			boolean leaf, int row, boolean hasFocus) {
 		String stringValue = tree.convertValueToText(value, isSelected, expanded, leaf, row, hasFocus);
-		//setEnabled(tree.isEnabled());
-		//check.setSelected(((CheckNode) value).isSelected());
+		// setEnabled(tree.isEnabled());
+		// check.setSelected(((CheckNode) value).isSelected());
 
-		//label.setText(stringValue);
+		// label.setText(stringValue);
 
 		return stringValue;
 	}

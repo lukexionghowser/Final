@@ -1,10 +1,12 @@
 package Lab;
 
+import java.util.Stack;
+
 public class stack {
 
-	private int arr[];
-	private int top;
-	private int capacity;
+	private static int arr[];
+	private static int top;
+	private static int capacity;
 
 	// Constructor to initialize the stack
 	public stack(int size) {
@@ -14,7 +16,7 @@ public class stack {
 	}
 
 	// Utility function to add an element `x` to the stack
-	public void push(int x) {
+	public static void push(int x) {
 		if (isFull()) {
 			System.out.println("Overflow\nProgram Terminated\n");
 			System.exit(1);
@@ -25,7 +27,7 @@ public class stack {
 	}
 
 	// Utility function to pop a top element from the stack
-	public int pop() {
+	public static int pop() {
 		// check for stack underflow
 		if (isEmpty()) {
 			System.out.println("Underflow\nProgram Terminated");
@@ -39,7 +41,7 @@ public class stack {
 	}
 
 	// Utility function to return the top element of the stack
-	public int peek() {
+	public static int peek() {
 		if (!isEmpty()) {
 			return arr[top];
 		} else {
@@ -55,13 +57,54 @@ public class stack {
 	}
 
 	// Utility function to check if the stack is empty or not
-	public Boolean isEmpty() {
+	public static Boolean isEmpty() {
 		return top == -1; // or return size() == 0;
 	}
 
 	// Utility function to check if the stack is full or not
-	public Boolean isFull() {
-		return top == capacity - 1; // or return size() == capacity;
+	public static Boolean isFull() {
+		return top == capacity - 1;
+	}
+
+	public static Stack<Integer> sortstack(Stack<Integer> input) {
+		Stack<Integer> tmpStack = new Stack<Integer>();
+		while (!input.isEmpty()) {
+
+			int tmp = input.pop();
+
+			while (!tmpStack.isEmpty() && tmpStack.peek() > tmp) {
+
+				input.push(tmpStack.pop());
+			}
+
+			tmpStack.push(tmp);
+		}
+		return tmpStack;
+	}
+
+	public static Stack<Integer> sort(Stack<Integer> stack) {
+
+		if (stack.isEmpty()) {
+			return null;
+		}
+
+		Stack<Integer> sortedStack = new Stack<Integer>();
+
+		int element = 0;
+		while (!stack.isEmpty()) {
+			if (stack.peek() <= (element = stack.pop())) {
+				if (sortedStack.isEmpty()) {
+					sortedStack.push(element);
+				} else {
+					while ((!sortedStack.isEmpty()) && sortedStack.peek() > element) {
+						stack.push(sortedStack.pop());
+					}
+					sortedStack.push(element);
+				}
+			}
+		}
+
+		return sortedStack;
 	}
 
 }
